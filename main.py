@@ -11,9 +11,12 @@ models = [
     "large"
 ]
 
-def transcribe_start(file, default_directory):
+def transcribe_start(file, model_select):
     start = time.time()
-    model = whisper.load_model(name = models[0])
+    model = whisper.load_model(name = models[model_select])
+
+    print(f"Model selected: {models[model_select]}")
+    print(f"TRANSCRIBING...")
 
     result = model.transcribe(file)
     
@@ -29,7 +32,14 @@ def transcribe_start(file, default_directory):
 
 
 def main():
-    pass
+    cwd = os.getcwd()
+    cwd = "C:/Users/Mark Boda/whisper-queuer"
+    file = f"/audio_samples/Bots Bridges and Euler Circuits.mp4"
+    input = f"{cwd}{file}"
+
+    print(input)
+
+    transcribe_start(input, 0)
 
 if __name__ == "__main__":
     main()
