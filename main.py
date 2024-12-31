@@ -5,7 +5,6 @@ import json
 
 input_directory = ""
 output_directory = ""
-transcripton_queue = []
 
 models = [
     "small",
@@ -18,21 +17,15 @@ def write_to_output(result, output):
         output_file.write(result)
 
 
-def create_queue():
-    pass
+def cmp_queue(file_path):
+    in_output = False
 
+    file = os.path.basename(file_path).rsplit('.', 1)[0] # extract name of file for comparison to output file
 
-def check_queue():
-    exists = False
-
-    for file in (os.listdir(input_directory)):
-        if file in os.listdir(output_directory):
-            exists = True
-            transcripton_queue.remove(file)
-            return 1
-        
-    return -1 
-
+    if file in os.listdir(output_directory):
+        in_output = True
+    
+    return in_output 
 
 
 def transcribe_start(file, model_sel):
@@ -51,11 +44,13 @@ def transcribe_start(file, model_sel):
     print("\nTRANSCRIPTION COMPLETE: \n")
     print(result['text'])
 
-    write_to_output(result, output_directory)
+    result_file_format = f"{file}.md"
+
+    write_to_output(result_file_format, output_directory)
 
     end = time.time()
     total_time = end - start
-    print(f'TRANSCRIPTION RUNTIME: {total_time} secs. ')
+    print(f'TRANSCRIPTION TIME: {total_time} secs. ')
 
 
 def main():
@@ -63,13 +58,28 @@ def main():
     file = f"/Bots Bridges and Euler Circuits.mp4"
     
     input = f"{cwd}{file}"
-
     print(input)
 
-    if check_queue() == -1:
-        pass
+    # compare directories
+    # if input[i] result (based on file title) exists in output already, continue
+    # else, transcribe and write to output
+    # use watchdog to monitor system.
+    # this code doesn't work how i intended it, its just a way of expressing my previous ideas.
+    input_state = os.listdir(input_directory)
 
-    transcribe_start(file, 0)
+    for file in input_state: 
+        if cmp_queue(file) == False:
+            transcribe_start(file)
+        else:
+            continue
+
+        if os.listdir(input_directory).length() > input_state.length():
+            # does this resume????
+            # if not try append i guess
+            input_state = os.listdir(input_directory)
+
+
+
 
 if __name__ == "__main__":
     main()
