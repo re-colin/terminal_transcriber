@@ -2,6 +2,8 @@ import whisper
 import time
 import os
 
+print("colin had a syncing conflict this is a test")
+
 default_directory = ""
 transcripton_queue = []
 
