@@ -2,6 +2,12 @@ import whisper
 import time
 import os
 import json
+import sys
+import logging
+from watchdog.observers import Observer
+from watchdog.events import LoggingEventHandler
+from watchdog.events import FileSystemEventHandler
+
 
 input_directory = ""
 output_directory = ""
@@ -17,7 +23,7 @@ def write_to_output(result, output):
         output_file.write(result)
 
 
-def cmp_queue(file_path):
+def cmp_files(file_path):
     in_output = False
 
     file = os.path.basename(file_path).rsplit('.', 1)[0] # extract name of file for comparison to output file
@@ -52,6 +58,24 @@ def transcribe_start(file, model_sel):
     total_time = end - start
     print(f'TRANSCRIPTION TIME: {total_time} secs. ')
 
+class FileEvent(LoggingEventHandler):
+    # TODO
+    # get source path for corresponding action performed on file
+    # compare to output directory
+    # perform action based on its action type
+
+    def on_modified(self, event):
+        print("ugghhh")
+        print(f"{event.event_type}")
+        print(f"{event.src_path}")
+
+    def on_created(self, event):
+        print("SHIT")
+        print(f"{event.event_type}")
+        print(f"{event.src_path}")
+
+    def on_deleted(self, event):
+        print("im so tired its 22:35")
 
 def main():
     cwd = os.getcwd()
@@ -60,25 +84,31 @@ def main():
     input = f"{cwd}{file}"
     print(input)
 
-    # compare directories
-    # if input[i] result (based on file title) exists in output already, continue
-    # else, transcribe and write to output
-    # use watchdog to monitor system.
-    # this code doesn't work how i intended it, its just a way of expressing my previous ideas.
-    input_state = os.listdir(input_directory)
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s | %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
 
-    for file in input_state: 
-        if cmp_queue(file) == False:
-            transcribe_start(file)
-        else:
-            continue
+    path = sys.argv[1] if len(sys.argv) > 1 else '.'
 
-        if os.listdir(input_directory).length() > input_state.length():
-            # does this resume????
-            # if not try append i guess
-            input_state = os.listdir(input_directory)
+    event_handler = LoggingEventHandler()
+    file_handler = FileEvent()
+    observer = Observer()
+    
+    observer.schedule(file_handler, path, recursive=True)
 
+    observer.start()
+    
+    try:
+        while True:
+            time.sleep(2)
+    
+    except KeyboardInterrupt:
+        print(f"\nHalting observer...")
+        observer.stop()
 
+    observer.join()
 
 
 if __name__ == "__main__":
