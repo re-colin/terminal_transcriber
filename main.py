@@ -8,8 +8,14 @@ from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler
 from watchdog.events import FileSystemEventHandler
 
+# todo
+# [] learn 2 use json for user data
+# [] format file events properly/move class/add transcription event
+# [] adjust cmp_files (comparing input to output dir)
+# [] install ffmpeg
+# goodnight
 
-input_directory = ""
+input_directory = "C:/Users/MarkB/whisper-queuer/audio_samples/"
 output_directory = ""
 
 models = [
@@ -58,7 +64,7 @@ def transcribe_start(file, model_sel):
     total_time = end - start
     print(f'TRANSCRIPTION TIME: {total_time} secs. ')
 
-class FileEvent(LoggingEventHandler):
+class FileEvent(FileSystemEventHandler):
     # TODO
     # get source path for corresponding action performed on file
     # compare to output directory
@@ -68,7 +74,7 @@ class FileEvent(LoggingEventHandler):
         print("ugghhh")
         print(f"{event.event_type}")
         print(f"{event.src_path}")
-
+    
     def on_created(self, event):
         print("SHIT")
         print(f"{event.event_type}")
@@ -84,26 +90,18 @@ def main():
     input = f"{cwd}{file}"
     print(input)
 
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s | %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
-    )
+    path = "C:/Users/MarkB/whisper-queuer/audio_samples/" # USER DIRECTORY HERE
 
-    path = sys.argv[1] if len(sys.argv) > 1 else '.'
-
-    event_handler = LoggingEventHandler()
-    file_handler = FileEvent()
+    event_handler = FileEvent()
     observer = Observer()
     
-    observer.schedule(file_handler, path, recursive=True)
-
+    observer.schedule(event_handler, path, recursive=True)
     observer.start()
     
     try:
         while True:
             time.sleep(2)
-    
+
     except KeyboardInterrupt:
         print(f"\nHalting observer...")
         observer.stop()
