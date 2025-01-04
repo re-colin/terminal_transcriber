@@ -2,7 +2,8 @@ import logging
 from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler
 from watchdog.events import FileSystemEventHandler
-from functions import cmp_file_directory_contents
+
+from functions import *
 
 class FileEvent(FileSystemEventHandler):
     logging.basicConfig(
@@ -23,8 +24,8 @@ class FileEvent(FileSystemEventHandler):
         created_file_name = src.split("/")[-1]
         print(f"Name of new file: {created_file_name}")
 
-        if cmp_file_directory_contents(created_file_name) == False:
-            print("Enact transcription here!!!!!")
+        if does_output_exist(created_file_name) == False:
+            transcribe_start(created_file_name)
         else:
-            print("This file exists, apparently!")
+            print(f"File {created_file_name} already exists.")
 

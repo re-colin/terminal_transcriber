@@ -1,12 +1,6 @@
-# todo
-# [] learn 2 use json for user data
-# [] format file events properly/move class/add transcription event
-# [X] adjust cmp_files (comparing input to output dir)
-# [] install ffmpeg
-# goodnight
-
-from functions import *
 from classes import *
+from watchdog.observers import Observer
+from watchdog.events import LoggingEventHandler
 
 def main():
     print("STARTING main()...")
