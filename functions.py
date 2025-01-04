@@ -5,15 +5,15 @@ import json
 import sys
 
 models = [
-    "small",
-    "medium",
-    "large"
+    "small",    # 0
+    "medium",   # 1
+    "large"     # 2
 ]
 
-cwd = os.getcwd()
-model_type = models[0]
-input_directory = f"{cwd}/audio_samples/"
-output_directory = os.path.expanduser("~/Outputs/")
+cwd = os.getcwd() ## Location of this file 
+model_type = models[0] ## Select model here. Use zero based indexing.
+input_directory = f"{cwd}/audio_samples/" ## Default directory where to-be-transcribed audio is located.
+output_directory = os.path.expanduser("~/Outputs/") ## Default output directory for transcription results
 
 
 def write_to_output(result, output):
@@ -24,7 +24,7 @@ def write_to_output(result, output):
         output_file.write(result)
 
 
-def cmp_file_directory_contents(file):
+def does_output_exist(file):
     in_output = False
 
     if os.path.exists(f"{output_directory}{file}"):
