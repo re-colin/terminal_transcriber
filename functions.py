@@ -16,7 +16,7 @@ input_directory = f"{cwd}/audio_samples/" ## Default directory where to-be-trans
 output_directory = os.path.expanduser("~/Outputs/") ## Default output directory for transcription results
 
 
-def write_to_output(result, output):
+def write_to_output(result):
     if os.path.exists(output_directory) == False:
         os.mkdir(output_directory)
 
@@ -38,18 +38,18 @@ def transcribe_start(file):
     model = whisper.load_model(name = model_type)
 
     print(f"Model selected: {model_type}")
-    print(f"TRANSCRIBING...")
 
+    print(f"\nTRANSCRIBING {file}...\n")
     audio = whisper.load_audio(file)
-    # Below line throws a FileNotFoundError
-    # assuming its related to ffmpeg-python not being installed
-    # there should be no problem with how the audio sample is being referenced
+    print(f"FILE AUDIO LOADED.")
+
     result = model.transcribe(audio)
     
     print("\nTRANSCRIPTION COMPLETE: \n")
     print(result['text'])
 
     result_file_name_full = f"{file}.md"
+    file_name = result_file_name_full.split() ## Change this.
 
     write_to_output(result_file_name_full, output_directory)
 

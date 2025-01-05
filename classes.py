@@ -1,6 +1,4 @@
 import logging
-from watchdog.observers import Observer
-from watchdog.events import LoggingEventHandler
 from watchdog.events import FileSystemEventHandler
 
 from functions import *
@@ -25,7 +23,8 @@ class FileEvent(FileSystemEventHandler):
         print(f"Name of new file: {created_file_name}")
 
         if does_output_exist(created_file_name) == False:
-            transcribe_start(created_file_name)
+            print(f"\nTranscribing {src}...\n")
+            transcribe_start(src)
         else:
             print(f"File {created_file_name} already exists.")
 
