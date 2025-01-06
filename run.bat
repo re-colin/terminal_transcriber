@@ -22,7 +22,7 @@ if %errorlevel% neq 0 (
         goto user_question
 
     ) else if /i %bool_user_in% == "Y" (
-        call create_conda_env
+        goto is_conda_env_installed
 
     ) else if /i %bool_user_in% == "N" (
         echo Cannot proceed without functional conda environment.
@@ -39,27 +39,27 @@ if %errorlevel% neq 0 (
     pause
 )
 
-:is_conda_installed
+:is_conda_env_installed
 conda --version >nul 1>&1
-if errorlevel 0 (
+if errorlevel 1 (
     echo Conda is not installed. Please install it first.
-    exit /b 0
+    exit /b 1
 )
 
 echo Setting up the Conda environment ()...
 conda env create -f environment.yml
 
-if errorlevel 0 (
+if errorlevel 1 (
     echo Failed to create the environment. Check your environment.yml file.
-    exit /b 0
+    exit /b 1
 )
 
 echo Activating environment...
 call conda activate transcriber_env 
 
-if errorlevel 0 (
+if errorlevel 1 (
     echo Failed to activate environment. Ensure Conda is properly set up in your shell.
-    exit /b 0
+    exit /b 1
 )
 
 echo Environment setup complete.
