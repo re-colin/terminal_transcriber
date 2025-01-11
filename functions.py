@@ -16,7 +16,7 @@ input_directory = f"{cwd}/audio_samples/" ## Default directory where to-be-trans
 output_directory = os.path.expanduser("~/Outputs/") ## Default output directory for transcription results
 
 
-def write_to_output(result, output, output_file_name):
+def create_output_file(result, output, output_file_name):
     if os.path.exists(output_directory) == False:
         os.mkdir(output_directory)
 
@@ -51,7 +51,7 @@ def transcribe_start(file):
     result_file_name_full = f"{file}.md"
     file_name = result_file_name_full.split('')[0].split() ## Change this.
 
-    write_to_output(output_directory, result_file_name_full, )
+    create_output_file(output_directory, result_file_name_full)
 
     end = time.time()
     total_time = end - start
