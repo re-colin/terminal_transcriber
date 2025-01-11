@@ -48,7 +48,7 @@ if errorlevel 1 (
 
 :setup_conda_env
 echo Setting up the Conda environment...
-conda env create -f environment.yml
+call conda env create -f environment.yml
 
 if errorlevel 1 (
     echo Failed to create the environment. Check your environment.yml file.
@@ -56,7 +56,7 @@ if errorlevel 1 (
 )
 
 echo Activating environment...
-call "%CONDA_PREFIX%\condabin\conda.bat" activate transcriber_env
+call conda activate transcriber_env
 
 if errorlevel 1 (
     echo Failed to activate environment. Ensure Conda is properly set up in your shell.

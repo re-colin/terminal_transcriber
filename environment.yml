@@ -6,6 +6,7 @@ dependencies:
   - ffmpeg
   - pip
   - pip:
+    - watchdog==6.0.0
     - certifi==2024.12.14
     - charset-normalizer==3.4.1
     - colorama==0.4.6

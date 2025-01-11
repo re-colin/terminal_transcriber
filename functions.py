@@ -1,8 +1,6 @@
 import whisper
 import time
 import os
-import json
-import sys
 
 models = [
     "small",    # 0
@@ -20,8 +18,8 @@ def create_output_file(result, output, output_file_name):
     if os.path.exists(output_directory) == False:
         os.mkdir(output_directory)
 
-    with open(f"{output}/{output_file_name}.md") as output_file:
-        output_file.write(result)
+    with open(f"{output}/{output_file_name}", "w") as output_file:
+        output_file.write(result['text'])
 
 
 def does_output_exist(file):
@@ -48,10 +46,10 @@ def transcribe_start(file):
     print("\nTRANSCRIPTION COMPLETE: \n")
     print(result['text'])
 
-    result_file_name_full = f"{file}.md"
-    file_name = result_file_name_full.split('')[0].split() ## Change this.
+    file_name = file.split('/')[-1].split('.')[0]
+    file_name_output = f"{file_name}.md"
 
-    create_output_file(output_directory, result_file_name_full)
+    create_output_file(result, output_directory, file_name_output)
 
     end = time.time()
     total_time = end - start
