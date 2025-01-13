@@ -25,7 +25,7 @@ Note that the input directory is by default set to /audio_samples/, output is se
 
 ## Other issues
 
-1. the `run.bat` script does not respond properly to user input, so I'm gonna remove it entirely for now.
+1. the `run.bat` script does not respond properly to user input permission on whether or not to create a conda environment, so I'm gonna remove it entirely for now.
 
-2. the newly created conda environment `run.bat` creates doesn't immediately activate after creation. this is probably because of how conda executes its processes that i don't know about, and so reflects in sequential calls from batch. to remedy this, just call `run.bat` again once the environment has finished being set up.
+2. the conda environment `run.bat` creates doesn't immediately activate after creation. this is probably because of how conda executes its processes that i don't know about, and so reflects in sequential calls from batch (even when using `call` beforehand). to remedy this (temporarily), just call `run.bat` again once the environment has finished being set up.
 
