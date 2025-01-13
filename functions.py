@@ -1,17 +1,25 @@
 import whisper
 import time
 import os
+import json
 
-models = [
-    "small",    # 0
-    "medium",   # 1
-    "large"     # 2
-]
+with open("settings.json", 'r') as file:
+    settings = json.load(file)
+
+input_directory_setting = settings["path_to_input_directory"]
+output_directory_setting = settings["path_to_output_directory"]
+model_type_setting = settings["model_type"]
 
 cwd = os.getcwd() ## Location of this file 
-model_type = models[0] ## Select model here. Use zero based indexing.
-input_directory = f"{cwd}/audio_samples/" ## Default directory where to-be-transcribed audio is located.
-output_directory = os.path.expanduser("~/Outputs/") ## Default output directory for transcription results
+
+if input_directory_setting == "":         
+    input_directory = f"{cwd}/audio_samples/" 
+
+if output_directory_setting == "":
+    output_directory = os.path.expanduser("~/Outputs/") 
+
+if model_type_setting == "":
+    model_type = "small"
 
 
 def create_output_file(result, output, output_file_name):

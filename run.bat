@@ -38,7 +38,7 @@ if errorlevel 1 (
 
 ) else (
     del temp_env_list.txt
-    echo Conda environment found.
+    echo Conda environment found. Running main.py...
     call "%CONDA_PREFIX%\condabin\conda.bat" activate transcriber_env
     cd whisper-queuer
     call python main.py
