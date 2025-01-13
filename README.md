@@ -5,7 +5,7 @@ A Python script for Whisper batch processing that runs in the terminal.
 The only manual installation requirement is Miniconda from https://docs.anaconda.com/miniconda/install/. This application can't function without it.
 
 #### Usage / How it works
-Run `run.bat` either by double-clicking on it. A conda environment should be set up for you so you can use it relatively out-of-the-box.
+Run `run.bat` either by double-clicking on it or from the terminal. A conda environment should be set up for you so you can use it relatively out-of-the-box.
 
 This application uses `watchdog` observers to monitor a file directory with the audio files you want to transcribe. If it detects a new file, it will go ahead and begin the process of transcribing it using Whisper, and toss the result into an output directory.
 
