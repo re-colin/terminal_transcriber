@@ -8,7 +8,8 @@ with open("settings.json", 'r') as file:
 
 input_directory_setting = settings["path_to_input_directory"]
 output_directory_setting = settings["path_to_output_directory"]
-model_type_setting = settings["model_type"]
+model_type_setting = settings["model"]
+device = settings["device"] 
 
 cwd = os.getcwd() ## Location of this file 
 
@@ -49,7 +50,7 @@ def transcribe_start(file):
     audio = whisper.load_audio(file)
     print(f"FILE AUDIO LOADED.")
 
-    result = model.transcribe(audio)
+    result = model.transcribe(audio, device=device)
     
     print("\nTRANSCRIPTION COMPLETE: \n")
     print(result['text'])

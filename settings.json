@@ -3,6 +3,8 @@
 
    "path_to_output_directory": "",
 
-   "model_type": ""
+   "model": "",
+
+   "device": ""
    
 }
