@@ -2,20 +2,23 @@ from classes import *
 from watchdog.observers import Observer
 
 def main():
-    path = input_directory # USER DIRECTORY HERE
-
     event_handler = FileEvent()
     observer = Observer()
     
-    observer.schedule(event_handler, path, recursive=True)
+    observer.schedule(event_handler, input_directory, recursive=True)
     observer.start()
-    print("\nOBSERVER STARTED.")
     print(f"""
-        Default user directory set to {input_directory}.
-        Default Whisper model set to {model_type}.
-        Edit these settings in 'functions.py'. 
+        OBSERVER STARTED. ----------------------
 
+        Audio input directory set to    {input_directory}
+        Transcription result directory  {output_directory}
+        Whisper model                   {model_type}
+        Whisper processing device       {device}
+        
+        Edit these settings in 'settings.json' 
         If new files are detected, they will be processed.
+
+        ----------------------------------------
     """)
 
     try:
@@ -23,7 +26,7 @@ def main():
             time.sleep(2)
 
     except KeyboardInterrupt:
-        print(f"\nHalting program...")
+        print(f"\nSTOPPING...")
         observer.stop()
 
     observer.join()

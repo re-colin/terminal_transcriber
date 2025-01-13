@@ -9,7 +9,7 @@ with open("settings.json", 'r') as file:
 input_directory_setting = settings["path_to_input_directory"]
 output_directory_setting = settings["path_to_output_directory"]
 model_type_setting = settings["model"]
-device = settings["device"] 
+device_setting = settings["device"] 
 
 cwd = os.getcwd() ## Location of this file 
 
@@ -22,6 +22,8 @@ if output_directory_setting == "":
 if model_type_setting == "":
     model_type = "small"
 
+if device_setting == "":
+    device = "cpu"
 
 def create_output_file(result, output, output_file_name):
     if os.path.exists(output_directory) == False:
@@ -46,7 +48,6 @@ def transcribe_start(file):
 
     print(f"Model selected: {model_type}")
 
-    print(f"\nTRANSCRIBING {file}...\n")
     audio = whisper.load_audio(file)
     print(f"FILE AUDIO LOADED.")
 

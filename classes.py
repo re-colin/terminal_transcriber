@@ -23,8 +23,8 @@ class FileEvent(FileSystemEventHandler):
         print(f"Name of new file: {created_file_name}")
 
         if does_output_exist(created_file_name) == False:
-            print(f"\nTranscribing {src}...\n")
+            print(f"\nTRANSCRIBING {src}...\n")
             transcribe_start(src)
         else:
-            print(f"File {created_file_name} already exists.")
+            print(f"\nFile {created_file_name} already exists.")
 
