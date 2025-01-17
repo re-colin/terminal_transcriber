@@ -1,5 +1,6 @@
 from classes import *
 from watchdog.observers import Observer
+import multiprocessing
 
 def main():
     event_handler = FileEvent()

@@ -19,8 +19,9 @@ if errorlevel 1 (
     goto setup_conda_env
 
 ) else (
-    echo Conda environment found. Running main.py...
+    echo Conda environment found. Activating... 
     call conda activate transcriber_env
+    echo Running main.py...
     cd whisper-queuer
     call python main.py
 )
@@ -39,7 +40,7 @@ if errorlevel 1 (
 
 echo Activating environment...
 
-call conda activate transcriber_env
+conda activate transcriber_env
 
 if errorlevel 1 (
     echo Failed to activate environment. Ensure Conda is properly set up in your shell.

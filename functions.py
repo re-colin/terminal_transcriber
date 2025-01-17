@@ -2,6 +2,7 @@ import whisper
 import time
 import os
 import json
+import multiprocessing
 
 with open("settings.json", 'r') as file:
     settings = json.load(file)
@@ -51,7 +52,7 @@ def transcribe_start(file):
     audio = whisper.load_audio(file)
     print(f"FILE AUDIO LOADED.")
 
-    result = model.transcribe(audio, device=device)
+    result = model.transcribe(audio) # add 'device' option that actually works
     
     print("\nTRANSCRIPTION COMPLETE: \n")
     print(result['text'])
