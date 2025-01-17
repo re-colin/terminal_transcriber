@@ -39,6 +39,8 @@ if errorlevel 1 (
 )
 
 echo Activating environment...
+echo ATTENTION: Theres a possibility the environment didn't actually activate after being set up for the first time. 
+echo If that is the case, run the `run.bat` file again and it should work as expected.
 
 conda activate transcriber_env
 
