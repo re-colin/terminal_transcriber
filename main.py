@@ -3,6 +3,7 @@ from watchdog.observers import Observer
 import multiprocessing
 
 def main():
+    print("\nStarting observer...")
     event_handler = FileEvent()
     observer = Observer()
     
