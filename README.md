@@ -6,7 +6,7 @@ This project was created as a personal tool, so it still has a handful of issues
 Clone this repository either by downloading a ZIP or cloning it using git:
 
 ~~~ shell
-git clone https://github.com/re-colin/whisper-queuer.git
+git clone https://github.com/re-colin/terminal_transcriber.git
 ~~~
 
 The only other manual installation requirement is Miniconda from https://docs.anaconda.com/miniconda/install/. This application can't function without it.
