@@ -2,7 +2,13 @@
 A Python script for Whisper batch processing that runs in the terminal.
 
 ## Setting up / Requirements
-The only manual installation requirement is Miniconda from https://docs.anaconda.com/miniconda/install/. This application can't function without it.
+Clone this repository either by downloading a ZIP or cloning it using git:
+
+~~~ shell
+git clone https://github.com/re-colin/whisper-queuer.git
+~~~
+
+The only other manual installation requirement is Miniconda from https://docs.anaconda.com/miniconda/install/. This application can't function without it.
 
 ## Usage / How it works
 Run `run.bat` either by double-clicking on it. A conda environment should be set up for you so you can use it relatively out-of-the-box.
