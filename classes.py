@@ -30,7 +30,7 @@ class FileEvent(FileSystemEventHandler):
 
             new_transcribe_process.start()
 
-            print("NEW TRANSCRIPTION PROCESS CREATED - Process ID: {}").format(new_transcribe_process.pid)
+            print(f"NEW TRANSCRIPTION PROCESS CREATED - Process ID: {new_transcribe_process.pid}")
 
             new_transcribe_process.join()
 

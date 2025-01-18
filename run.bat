@@ -17,18 +17,13 @@ findstr "transcriber_env" temp_env_list.txt >nul
 
 if errorlevel 1 (
     goto setup_conda_env
-
 ) else (
-    echo Conda environment found. Activating... 
-    call conda activate transcriber_env
-    echo Running main.py...
-    cd whisper-queuer
-    call python main.py
+    goto activate_conda_env
 )
 
-:setup_conda_env
-
 del temp_env_list.txt
+
+:setup_conda_env
 
 echo Setting up Conda environment...
 call conda env create -f environment.yml
@@ -38,15 +33,17 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo Activating environment...
-echo ATTENTION: Theres a possibility the environment didn't actually activate after being set up for the first time. 
-echo If that is the case, run the `run.bat` file again and it should work as expected.
+echo Environment setup complete.
 
-conda activate transcriber_env
+:activate_conda_env
+echo Activating environment...
+
+call conda activate transcriber_env
 
 if errorlevel 1 (
     echo Failed to activate environment. Ensure Conda is properly set up in your shell.
     exit /b 1
 )
 
-echo Environment setup complete.
+cd terminal_transcriber
+call python main.py
