@@ -9,6 +9,13 @@ Clone this repository either by downloading a ZIP or cloning it using git:
 git clone https://github.com/re-colin/terminal_transcriber.git
 ~~~
 
+Since this uses conda software, and doesn't add conda to your user PATH by default, the default Command Prompt program won't recognize it if you double-click on `run.bat`. A temporary workaround is to use the Anaconda Prompt and run it from there:
+
+~~~ shell 
+cd terminal_transcriber
+run
+~~~
+
 The only other manual installation requirement is Miniconda from https://docs.anaconda.com/miniconda/install/. This application can't function without it.
 
 ## Usage / How it works
@@ -29,10 +36,3 @@ Note that the input directory is by default set to /audio_samples/, output is se
    "device": ""
 }
 ~~~
-
-## Other issues
-
-1. the `run.bat` script does not respond properly to user input permission on whether or not to create a conda environment, so I'm gonna remove it entirely for now.
-
-2. the conda environment `run.bat` creates doesn't immediately activate after creation. this is probably because of how conda executes its processes that i don't know about, and so reflects in sequential calls from batch (even when using `call` beforehand). to remedy this (temporarily), just call `run.bat` again once the environment has finished being set up.
-
