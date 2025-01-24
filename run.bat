@@ -4,13 +4,15 @@ setlocal enabledelayedexpansion
 
 call C:/Users/%USERNAME%/miniconda3/Scripts/activate.bat
 if errorlevel 1 (
-    call C:/Users/%USERNAME%/Anaconda3/Scripts/activate.bat
+    call C:/Users/%USERNAME%/Anaconda3/Scripts/activate.bat    
+    if errorlevel 1 (
+        echo Cannot use conda from the current command prompt.
+        echo Use the Anaconda Prompt or add your conda installation to PATH.
+    )
 )
 
-if errorlevel 1 (
-    echo Cannot use conda from the current command prompt.
-    echo Use the Anaconda Prompt or add your conda installation to PATH.
-)
+
+
 
 :: echo Errorlevel after conda --version: %errorlevel%
 call conda --version
