@@ -16,14 +16,13 @@ Run `run.bat`, either by clicking on it or running it from a command prompt. A c
 
 This application uses `watchdog` observers to monitor a file directory with the audio files you want to transcribe. If it detects a new file, it will go ahead and begin the process of transcribing it using Whisper, and toss the result into an output directory.
 
-Settings such as which directories it decides to use can be specified inside `settings.json`. 
-
-Note that the input directory is by default set to /audio_samples/, output is set to ~/Outputs/, and the default model size is `small`, all defined within `functions.py`. 
+Settings such as which directories it decides to use can be specified inside `settings.json`. Default values are as follows. If input and output directories aren't specified, `functions.py` will use `~/terminal_transcriber/audio_samples` and `~/Outputs/` by default respectively.
 
 ~~~ json
 {
-   "path_to_input_directory": "",
-   "path_to_output_directory": "",
-   "model": "",
+   "path_to_input_directory": "%USER_PATH_HERE%/terminal_transcriber/audio_samples/",
+   "path_to_output_directory": "%USER_PATH_HERE%/Outputs/",
+   "model": "small",
+   "device": "cpu"
 }
 ~~~

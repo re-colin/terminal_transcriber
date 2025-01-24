@@ -1,10 +1,10 @@
 {
-   "path_to_input_directory": "",
+   "path_to_input_directory": "%USER_PATH_HERE%/terminal_transcriber/audio_samples/",
 
-   "path_to_output_directory": "",
+   "path_to_output_directory": "%USER_PATH_HERE%/Outputs/",
 
-   "model": "",
+   "model": "small",
 
-   "device": ""
+   "device": "cpu"
    
 }

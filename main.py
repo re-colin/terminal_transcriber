@@ -4,6 +4,7 @@ import multiprocessing
 
 def main():
     print("\nStarting observer...")
+
     event_handler = FileEvent()
     observer = Observer()
     
@@ -14,11 +15,11 @@ def main():
 
         Audio input directory set to    {input_directory}
         Transcription result directory  {output_directory}
-        Whisper model                   {model_type}
+        Whisper model                   {model_size}
         Whisper processing device       {device}
         
         Edit these settings in 'settings.json' 
-        If new files are detected, they will be processed.
+        If new files are detected during runtime, they will be processed.
 
         ----------------------------------------
     """)
