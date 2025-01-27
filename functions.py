@@ -2,7 +2,6 @@ import whisper
 import time
 import os
 import json
-import multiprocessing
 
 with open("settings.json", 'r') as file:
     settings = json.load(file)
