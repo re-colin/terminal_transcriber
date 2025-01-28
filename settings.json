@@ -5,6 +5,7 @@
 
    "model": "small",
 
-   "device": "cpu"
-   
+   "device": "cpu",
+  
+   "maximum_parallel_processes_allowed": 2
 }

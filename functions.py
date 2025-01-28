@@ -9,7 +9,9 @@ with open("settings.json", 'r') as file:
 input_directory = settings["path_to_input_directory"]
 output_directory = settings["path_to_output_directory"]
 model_size = settings["model"]
-device = settings["device"] 
+device = settings["device"]
+# this setting will be for later
+# max_processes_allowed = settings["maximum_parallel_processes_allowed"]
 
 cwd = os.getcwd() ## Location of this file 
 
@@ -19,6 +21,7 @@ if os.path.exists(output_directory) == False:
 if os.path.exists(input_directory) == False:         
     input_directory = f"{cwd}/audio_samples/" 
 
+# maybe remove these since each library will terminate anyway if an invalid arg is passed.
 if model_size == "":
     model_size = "small"
 
@@ -52,7 +55,7 @@ def transcribe_start(file):
     audio = whisper.load_audio(file)
     print(f"FILE AUDIO LOADED.")
 
-    result = model.transcribe(audio) # add 'device' option that actually works
+    result = model.transcribe(audio)
     
     print("\nTRANSCRIPTION COMPLETE: \n")
     print(result['text'])
@@ -65,3 +68,4 @@ def transcribe_start(file):
     end = time.time()
     total_time = end - start
     print(f"TRANSCRIPTION TIME: {total_time} secs using {model_size} model.")
+

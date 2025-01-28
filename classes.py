@@ -1,10 +1,10 @@
 import logging
-import multiprocessing
 from watchdog.events import FileSystemEventHandler
 from functions import *
+import multiprocessing
 
 class FileEvent(FileSystemEventHandler):
-
+    
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(message)s',
@@ -17,6 +17,7 @@ class FileEvent(FileSystemEventHandler):
         )
 
     def on_created(self, event):
+        
         print(event.src_path)
 
         src = event.src_path
@@ -24,6 +25,7 @@ class FileEvent(FileSystemEventHandler):
         print(f"Name of new file: {created_file_name}")
 
         if does_output_exist(created_file_name) == False:
+
             print(f"\nTRANSCRIBING {src}...\n")
 
             new_transcribe_process = multiprocessing.Process(target=transcribe_start, args=(src, ))
@@ -32,7 +34,7 @@ class FileEvent(FileSystemEventHandler):
 
             print(f"NEW TRANSCRIPTION PROCESS CREATED - Process ID: {new_transcribe_process.pid}")
 
-            new_transcribe_process.join()
+            new_transcribe_process.join() # wait for previous job to complete
 
         else:
             print(f"\nFile {created_file_name} already exists.")

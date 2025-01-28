@@ -1,6 +1,5 @@
 from classes import *
 from watchdog.observers import Observer
-import multiprocessing
 
 def main():
     print("\nStarting observer...")
