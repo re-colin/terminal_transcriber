@@ -25,9 +25,10 @@ if os.path.exists(input_directory) == False:
 if model_size == "":
     model_size = "small"
 
-if device == "":
+if device == "": 
     device = "cpu"
 
+# check torch version here, install and use if using cuda option
 
 def create_output_file(result, output, output_file_name):
     if os.path.exists(output_directory) == False:
@@ -48,6 +49,7 @@ def does_output_exist(file):
 
 def transcribe_start(file):
     start = time.time()
+    
     model = whisper.load_model(name=model_size, device=device)
 
     print(f"Model selected: {model_size}")
