@@ -1,9 +1,0 @@
-
-# conda environments:
-#
-base                 * C:\Users\MarkB\miniconda3
-daft                   C:\Users\MarkB\miniconda3\envs\daft
-devices-app-kivy       C:\Users\MarkB\miniconda3\envs\devices-app-kivy
-transcriber_env        C:\Users\MarkB\miniconda3\envs\transcriber_env
-whisper-queuer         C:\Users\MarkB\miniconda3\envs\whisper-queuer
-
