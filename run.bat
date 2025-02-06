@@ -2,15 +2,15 @@
 echo Calling run.bat...
 setlocal enabledelayedexpansion
 
-call %USERPROFILE%/miniconda3/Scripts/activate.bat
-
+call C:/Users/%USERNAME%/miniconda3/Scripts/activate.bat
 if errorlevel 1 (
-    call %USERPROFILE%/Anaconda3/Scripts/activate.bat    
+    call C:/Users/%USERNAME%/Anaconda3/Scripts/activate.bat    
     if errorlevel 1 (
         echo Cannot use conda from the current command prompt.
         echo Use the Anaconda Prompt or add your conda installation to PATH.
     )
 )
+
 
 :: echo Errorlevel after conda --version: %errorlevel%
 call conda --version
@@ -27,12 +27,12 @@ call conda env list > temp_env_list.txt
 findstr "transcriber_env" temp_env_list.txt >nul
 
 if errorlevel 1 (
+    del temp_env_list.txt
     goto setup_conda_env
 ) else (
+    del temp_env_list.txt
     goto activate_conda_env
 )
-
-del temp_env_list.txt
 
 :setup_conda_env
 
@@ -47,6 +47,7 @@ if errorlevel 1 (
 echo Environment setup complete.
 
 :activate_conda_env
+
 echo Activating environment...
 
 call conda activate transcriber_env
@@ -58,4 +59,3 @@ if errorlevel 1 (
 
 cd terminal_transcriber
 call python main.py
-pause
