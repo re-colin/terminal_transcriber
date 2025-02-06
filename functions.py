@@ -21,12 +21,14 @@ if os.path.exists(output_directory) == False:
 if os.path.exists(input_directory) == False:         
     input_directory = f"{cwd}/audio_samples/" 
 
-# maybe remove these since each library will terminate anyway if an invalid arg is passed.
 if model_size == "":
     model_size = "small"
 
-if device == "": 
-    device = "cpu"
+# Removed device 'blank' check option, since Whisper will terminate anyway if the passed in device param isn't valid
+if device == "cuda":
+    if torch.cuda.is_available() == False:
+        print("torch.cuda.is_available() evaluates to FALSE.")
+        # 
 
 # check torch version here, install and use if using cuda option
 
