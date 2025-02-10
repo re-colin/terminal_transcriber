@@ -2,6 +2,7 @@ import whisper
 import time
 import os
 import json
+import torch
 
 with open("settings.json", 'r') as file:
     settings = json.load(file)
@@ -28,10 +29,9 @@ if model_size == "":
 if device == "cuda":
     if torch.cuda.is_available() == False:
         print("torch.cuda.is_available() evaluates to FALSE.")
-        # 
-
-# check torch version here, install and use if using cuda option
-
+        print("This means Pytorch may not be installed inside this environment (transcriber_env).")
+        print("Execute the 'install_pytorch.bat' script before trying again, or installing it here manually.")
+        
 def create_output_file(result, output, output_file_name):
     if os.path.exists(output_directory) == False:
         os.mkdir(output_directory)
