@@ -28,9 +28,16 @@ if model_size == "":
 # Removed device 'blank' check option, since Whisper will terminate anyway if the passed in device param isn't valid
 if device == "cuda":
     if torch.cuda.is_available() == False:
-        print("torch.cuda.is_available() evaluates to FALSE.")
-        print("This means Pytorch may not be installed inside this environment (transcriber_env).")
-        print("Execute the 'install_pytorch.bat' script before trying again, or installing it here manually.")
+        print("""\n
+        WARNING: torch.cuda.is_available() evaluates to FALSE.
+        This means Pytorch may not be installed inside this environment (transcriber_env).
+        Execute the 'install_pytorch.bat' script before trying again, or installing it here manually.
+        
+        Defaulting to CPU.
+        """)
+        
+        device = "cpu"
+        
         
 def create_output_file(result, output, output_file_name):
     if os.path.exists(output_directory) == False:
@@ -40,6 +47,7 @@ def create_output_file(result, output, output_file_name):
         output_file.write(result['text'])
 
 
+# idk why this is still here
 def does_output_exist(file):
     in_output = False
 
@@ -58,6 +66,7 @@ def transcribe_start(file):
 
     audio = whisper.load_audio(file)
     print(f"FILE AUDIO LOADED.")
+    print(f"TRANSCRIBING...")
 
     result = model.transcribe(audio)
     
@@ -71,5 +80,5 @@ def transcribe_start(file):
 
     end = time.time()
     total_time = end - start
-    print(f"TRANSCRIPTION TIME: {total_time} secs using {model_size} model.")
+    print(f"\nTRANSCRIPTION TIME: {total_time} secs using {model_size} model.")
 

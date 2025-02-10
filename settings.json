@@ -3,9 +3,7 @@
 
    "path_to_output_directory": "%USER_PATH_HERE%/Outputs/",
 
-   "model": "small",
+   "model": "medium",
 
-   "device": "cpu",
-  
-   "maximum_parallel_processes_allowed": 2
+   "device": "cpu"
 }

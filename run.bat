@@ -28,8 +28,6 @@ if errorlevel 1 (
 call conda env list > temp_env_list.txt
 findstr "transcriber_env" temp_env_list.txt >nul
 
-pause
-
 if errorlevel 1 (
     del temp_env_list.txt
     goto setup_conda_env
@@ -56,7 +54,6 @@ echo Environment setup complete.
 echo Activating environment...
 
 call conda activate transcriber_env
-
 if errorlevel 1 (
     echo Failed to activate environment. Ensure Conda is properly set up in your shell.
     pause
