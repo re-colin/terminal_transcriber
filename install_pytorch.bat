@@ -8,6 +8,7 @@ if errorlevel 1 (
     if errorlevel 1 (
         echo Cannot use conda from the current command prompt.
         echo Use the Anaconda Prompt or add your conda installation to PATH.
+        pause
     )
 )
 
@@ -16,6 +17,7 @@ call conda --version
 if errorlevel 1 (
     echo Conda is not installed. Please install it first at
     echo https://docs.anaconda.com/miniconda/install/.
+    pause
     exit /b 1
 ) else (
     echo Conda detected.
@@ -29,6 +31,7 @@ if errorlevel 1 (
     del temp_env_list.txt
     echo Virtual environment is not set up.
     echo Run 'run.bat' before attempting to run this script.
+    pause
     exit /b 1
 )
 
@@ -38,6 +41,7 @@ call conda activate transcriber_env
 
 if errorlevel 1 (
     echo Failed to activate environment. Ensure Conda is properly set up in your shell.
+    pause
     exit /b 1
 )
 
@@ -47,5 +51,6 @@ echo Installing Pytorch...
 call pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 if errorlevel 1 (
     echo Error installing Pytorch.
+    pause
     exit /b 1
 )

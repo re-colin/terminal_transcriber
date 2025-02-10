@@ -8,15 +8,17 @@ if errorlevel 1 (
     if errorlevel 1 (
         echo Cannot use conda from the current command prompt.
         echo Use the Anaconda Prompt or add your conda installation to PATH.
+        pause
+        exit /b 1
     )
 )
-
 
 :: echo Errorlevel after conda --version: %errorlevel%
 call conda --version
 if errorlevel 1 (
     echo Conda is not installed. Please install it first at
     echo https://docs.anaconda.com/miniconda/install/.
+    pause
     exit /b 1
 ) else (
     echo Conda detected.
@@ -25,6 +27,8 @@ if errorlevel 1 (
 :: echo Checking for Conda environment...
 call conda env list > temp_env_list.txt
 findstr "transcriber_env" temp_env_list.txt >nul
+
+pause
 
 if errorlevel 1 (
     del temp_env_list.txt
@@ -41,6 +45,7 @@ call conda env create -f environment.yml
 
 if errorlevel 1 (
     echo Failed to create conda environment. Check your environment.yml file.
+    pause
     exit /b 1
 )
 
@@ -54,6 +59,7 @@ call conda activate transcriber_env
 
 if errorlevel 1 (
     echo Failed to activate environment. Ensure Conda is properly set up in your shell.
+    pause
     exit /b 1
 )
 
