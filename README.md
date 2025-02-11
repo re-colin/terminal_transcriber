@@ -27,5 +27,4 @@ Settings such as which directories it decides to use can be specified inside `se
 }
 ~~~
 
-Model options are between `small`, `medium` and `large`.
-Device options include `cpu` and `cuda`.
+Information about Whisper and it's model size options (`tiny`, `base`, `small`, `medium`, `large`...) can be found at https://github.com/openai/whisper.
