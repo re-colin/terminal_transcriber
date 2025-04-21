@@ -1,10 +1,10 @@
 import logging
 from watchdog.events import FileSystemEventHandler
-from functions import *
+from functions import does_output_exist
+from functions import transcribe_start
 import multiprocessing
 
 class FileEvent(FileSystemEventHandler):
-    
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(message)s',

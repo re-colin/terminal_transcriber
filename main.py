@@ -1,4 +1,9 @@
-from classes import *
+import time
+from classes import FileEvent
+from functions import input_directory
+from functions import output_directory
+from functions import model_size
+from functions import device
 from watchdog.observers import Observer
 
 def main():
