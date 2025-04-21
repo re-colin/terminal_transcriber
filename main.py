@@ -20,6 +20,8 @@ def main():
         Edit these settings in 'settings.json' 
         If new files are detected during runtime, they will be processed.
 
+        Terminate this program with Ctrl+C.
+
         ----------------------------------------
     """)
 

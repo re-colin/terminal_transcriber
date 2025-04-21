@@ -3,7 +3,7 @@
 
    "path_to_output_directory": "%USER_PATH_HERE%/Outputs/",
 
-   "model": "medium",
+   "model": "small",
 
    "device": "cpu"
 }

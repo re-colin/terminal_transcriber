@@ -22,10 +22,16 @@ if os.path.exists(output_directory) == False:
 if os.path.exists(input_directory) == False:         
     input_directory = f"{cwd}/audio_samples/" 
 
+
 if model_size == "":
     model_size = "small"
 
-# Removed device 'blank' check option, since Whisper will terminate anyway if the passed in device param isn't valid
+
+if device == "":
+    print("device setting in settings.json is empty -- Defaulting to using CPU.")
+    device = "cpu"
+
+
 if device == "cuda":
     if torch.cuda.is_available() == False:
         print("""\n
@@ -70,8 +76,8 @@ def transcribe_start(file):
 
     result = model.transcribe(audio)
     
-    print("\nTRANSCRIPTION COMPLETE: \n")
-    print(result['text'])
+    print(f"\nTRANSCRIPTION COMPLETE in {output_directory} \n")
+    # print(result['text'])
 
     file_name = file.split('/')[-1].split('.')[0]
     file_name_output = f"{file_name}.md"
