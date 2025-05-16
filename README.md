@@ -1,6 +1,9 @@
 # whisper-queuer
 A Python script for Whisper batch processing that runs in the terminal.
-This project was created as a personal tool, so it still has a handful of issues and quirks.
+This project was created as a personal tool, so it has a handful of issues and quirks. If you also want to use this, it might not be all that convenient compared to other available projects. But if you happen to use it anyway, please feel free to suggest changes/critique!
+
+## Note
+As of writing this (17-05-2025), the setup script only works on Windows, so if you're using a different platform, everything needs to be installed manually. Womp womp. I will add a Unix install script... when I feel like it.
 
 ## Setting up / Requirements
 Clone this repository either by downloading a ZIP or cloning it using git:
