@@ -2,6 +2,8 @@
 echo Calling run.bat...
 setlocal enabledelayedexpansion
 
+:: NTS: Edit this so miniconda is installed automatically
+
 call C:/Users/%USERNAME%/miniconda3/Scripts/activate.bat
 if errorlevel 1 (
     call C:/Users/%USERNAME%/Anaconda3/Scripts/activate.bat    
